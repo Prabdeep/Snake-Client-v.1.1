@@ -17,7 +17,7 @@ public class Login extends JPanel {
     private JTextField PlayerID;
     private JPasswordField passwordField;
     private JButton btnLogin;
-    private JLabel lblNewLabel;
+    private JLabel lblPleaseEnter;
     private JLabel lblPlayerid;
     private JLabel lblPassword;
     private JLabel errorMessage;
@@ -50,10 +50,10 @@ public class Login extends JPanel {
         btnLogin.setBounds(98, 405, 253, 44);
         add(btnLogin);
 
-        lblNewLabel = new JLabel("Please enter Player ID and Password:");
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblNewLabel.setBounds(54, 110, 341, 25);
-        add(lblNewLabel);
+        lblPleaseEnter = new JLabel("Please enter Player ID and Password:");
+        lblPleaseEnter.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblPleaseEnter.setBounds(54, 110, 341, 25);
+        add(lblPleaseEnter);
 
         lblPlayerid = new JLabel("PlayerID:");
         lblPlayerid.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -76,24 +76,7 @@ public class Login extends JPanel {
         add(cbs);
 
     }
-
-    public JLabel getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage.setText(errorMessage);
-    }
-
-    public JTextField getPlayerID() {
-        return PlayerID;
-    }
-
-    public JTextField getPassword() {
-        return passwordField;
-    }
-
-    public void actionPerformedLogin(ActionListener l) {
-        btnLogin.addActionListener(l);
+    public void actionPerformedLogin(ActionListener login) {
+        btnLogin.addActionListener(login);
     }
 }
