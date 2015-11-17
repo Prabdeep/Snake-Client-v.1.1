@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -65,5 +66,9 @@ public class LoadHighscores extends JPanel {
         cbs.setBounds(0,0,450,550);
         add(cbs);
 
+    }
+
+    public void actionPerformedBack(ActionListener back) {
+        btnBack.addActionListener(back);
     }
 }

@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -56,4 +57,11 @@ public class StartGame extends JPanel {
 
     }
 
+    public void actionPerformedStartGame(ActionListener startgame) {
+        btnStartGame.addActionListener(startgame);
+    }
+
+    public void actionPerformedBack(ActionListener back) {
+        btnBack.addActionListener(back);
+    }
 }

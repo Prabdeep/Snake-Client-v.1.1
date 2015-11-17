@@ -8,6 +8,7 @@ package GUI;
         import java.awt.Font;
         import java.awt.Color;
         import java.awt.Image;
+        import java.awt.event.ActionListener;
 
 public class SnakeMenu extends JPanel {
     private JLabel lblWelcomeToThe;
@@ -49,7 +50,7 @@ public class SnakeMenu extends JPanel {
         btnDeleteGame.setBounds(72, 267, 306, 41);
         add(btnDeleteGame);
 
-        btnLoadHighscores = new JButton("Load Highscores ");
+        btnLoadHighscores = new JButton("Load Highscores");
         btnLoadHighscores.setFont(new Font("Tahoma", Font.PLAIN, 17));
         btnLoadHighscores.setBounds(72, 371, 306, 41);
         add(btnLoadHighscores);
@@ -70,5 +71,14 @@ public class SnakeMenu extends JPanel {
         cbs.setBounds(0,0,450,550);
         add(cbs);
 
+    }
+
+    public void addACList(ActionListener ac){
+        btnStartNewGame.addActionListener(ac);
+        btnCreateGame.addActionListener(ac);
+        btnDeleteGame.addActionListener(ac);
+        btnloadresult.addActionListener(ac);
+        btnLoadHighscores.addActionListener(ac);
+        btnLogOut.addActionListener(ac);
     }
 }

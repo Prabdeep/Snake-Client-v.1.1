@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,7 +46,7 @@ public class LoadResult extends JPanel {
 
         lblCanYouBeat = new JLabel("Can you beat your previous highscore?");
         lblCanYouBeat.setForeground(new Color(0, 0, 153));
-        lblCanYouBeat.setBounds(131, 328, 188, 14);
+        lblCanYouBeat.setBounds(119, 328, 227, 14);
         add(lblCanYouBeat);
 
         btnBack = new JButton("Back to main menu");
@@ -59,5 +60,9 @@ public class LoadResult extends JPanel {
         cbs.setBounds(0,0,450,550);
         add(cbs);
 
+    }
+
+    public void actionPerformedBack(ActionListener back) {
+        btnBack.addActionListener(back);
     }
 }

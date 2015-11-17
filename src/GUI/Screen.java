@@ -38,7 +38,7 @@ public class Screen extends JFrame {
 
     public Screen() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 550);
+        setBounds(100, 100, 465, 585);
         contentPane = new JPanel();
         contentPane.setLayout(new CardLayout());
         setContentPane(contentPane);
