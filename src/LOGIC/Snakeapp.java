@@ -31,10 +31,37 @@ public class Snakeapp {
 
     }
 
+    private boolean isEmpty(String text) {
+
+        if (text.equals("") || text.length() < 1 || text == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private class LoginActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent a) {
-            screen.show(Screen.SNAKEMENU);
+            String actCom = a.getActionCommand();
+            if (actCom.equals("Login")) {
+
+                String loginField = screen.getLogin().getPlayerID().getText();
+                String passwordField = screen.getLogin().getPasswordfield()
+                        .getText();
+                screen.getLogin().getPlayerID().setText("");
+                screen.getLogin().getPasswordfield().setText("");
+
+                if (isEmpty(loginField) || isEmpty(passwordField)) {
+
+                    screen.getLogin().setLoginFailure("Please type a Player ID and a Password");
+
+                }
+
+                else {screen.show(Screen.SNAKEMENU);
+
+                }
+            }
         }
     }
 

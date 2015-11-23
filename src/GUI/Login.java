@@ -20,7 +20,7 @@ public class Login extends JPanel {
     private JLabel lblPleaseEnter;
     private JLabel lblPlayerid;
     private JLabel lblPassword;
-    private JLabel errorMessage;
+    private JLabel loginFailure;
 
     /**
      * Create the panel.
@@ -65,10 +65,10 @@ public class Login extends JPanel {
         lblPassword.setBounds(64, 296, 68, 27);
         add(lblPassword);
 
-        errorMessage = new JLabel("");
-        errorMessage.setForeground(new Color(204, 0, 0));
-        errorMessage.setBounds(135, 353, 179, 44);
-        add(errorMessage);
+        loginFailure = new JLabel("");
+        loginFailure.setForeground(new Color(204, 0, 0));
+        loginFailure.setBounds(112, 354, 272, 44);
+        add(loginFailure);
 
         JLabel cbs = new JLabel(""); Image src = new ImageIcon(this.getClass().getResource("Background1.jpg")).getImage();
         cbs.setIcon( new ImageIcon(src));
@@ -78,5 +78,17 @@ public class Login extends JPanel {
     }
     public void actionPerformedLogin(ActionListener login) {
         btnLogin.addActionListener(login);
+    }
+
+    public void setLoginFailure(String loginfailure) {
+        this.loginFailure.setText(loginfailure);
+    }
+
+    public JTextField getPlayerID() {
+        return PlayerID;
+    }
+
+    public JTextField getPasswordfield() {
+        return passwordField;
     }
 }
