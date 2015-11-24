@@ -8,7 +8,7 @@ public class ServerConnection {
 
     public ServerConnection(){
         this.hostAddress = "http://localhost";
-        this.port = 9998;
+        this.port = 8888;
     }
 
     private String hostAddress;
@@ -35,11 +35,11 @@ public class ServerConnection {
         Client client = Client.create();
 
         WebResource webResource = client.resource(getHostAddress() + ":" + getPort() + "/api/" + path);
-        //ClientResponse response = webResource.type("application/json").get();
+        ClientResponse response = webResource.type("application/json").get(ClientResponse.class);
 
 
-        //String output = response.getEntity(String.class);
-        //System.out.println(output);
+        String output = response.getEntity(String.class);
+        System.out.println(output);
     }
 
     public void post(String json, String path){
@@ -57,5 +57,8 @@ public class ServerConnection {
         String output = response.getEntity(String.class);
         System.out.println(output);
 
+    }
+
+    public void stringMessageParser(String json, String s) {
     }
 }

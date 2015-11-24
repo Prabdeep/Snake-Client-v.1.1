@@ -1,9 +1,15 @@
 package LOGIC;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+import java.util.Date;
+import javax.swing.*;
+
+import com.google.gson.Gson;
 
 import GUI.*;
+import SDK.Game;
+import SDK.ServerConnection;
+import SDK.Player;
 
 public class Snakeapp {
 
@@ -21,7 +27,7 @@ public class Snakeapp {
         screen.getCreategame().actionPerformedCreateGame(new CreateGameActionListener());
         screen.getDeletegame().actionPerformedDeleteGame(new DeleteGameActionListener());
 
-    // Back ActionListeners
+    // Back ActionListeners:
 
         screen.getStartgame().actionPerformedBack(new StartGameActionListenerBack());
         screen.getCreategame().actionPerformedBack(new CreateGameActionListenerBack());
@@ -42,13 +48,49 @@ public class Snakeapp {
 
     private class LoginActionListener implements ActionListener {
 
+        public void Login(String playerid, String password) {
+
+            ServerConnection serverConnection = new ServerConnection();
+
+            Player player = new Player();
+            player.setPlayerid(playerid);
+            player.setPassword(password);
+
+            String json = new Gson().toJson(player);
+
+            serverConnection.post(json, "login/");
+
+        }
+
+        public boolean playerAuthentication () {
+
+            String playerid = screen.getLogin().getPlayerID().getText();
+            String password = screen.getLogin().getPasswordfield().getText();
+
+            ServerConnection serverConnection = new ServerConnection();
+            if (!playerid.equals("") && !password.equals("")) {
+
+                Player player = new Player();
+                player.setPlayerid(playerid);
+                player.setPassword(password);
+
+                String json = new Gson().toJson(player);
+
+                serverConnection.stringMessageParser(json, "login/");
+
+
+                return true;
+            }
+
+            return false;
+        }
+
         public void actionPerformed(ActionEvent a) {
             String actCom = a.getActionCommand();
             if (actCom.equals("Login")) {
 
                 String loginField = screen.getLogin().getPlayerID().getText();
-                String passwordField = screen.getLogin().getPasswordfield()
-                        .getText();
+                String passwordField = screen.getLogin().getPasswordfield().getText();
                 screen.getLogin().getPlayerID().setText("");
                 screen.getLogin().getPasswordfield().setText("");
 
@@ -94,7 +136,6 @@ public class Snakeapp {
             else {
                 screen.show(screen.LOGIN);
             }
-
         }
     }
 
