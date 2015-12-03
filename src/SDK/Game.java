@@ -10,8 +10,8 @@ public class Game {
     private int endGame;
     private String name;
     private String hostControls;
-    private Player host;
-    private Player opponent;
+    private User host;
+    private User opponent;
     private String opponentControls;
     private int status;
     private Date created;
@@ -40,11 +40,11 @@ public class Game {
         this.hostControls = hostControls;
     }
 
-    public void setHost(Player host) {
+    public void setHost(User host) {
         this.host = host;
     }
 
-    public void setOpponent(Player opponent) {
+    public void setOpponent(User opponent) {
         this.opponent = opponent;
     }
 

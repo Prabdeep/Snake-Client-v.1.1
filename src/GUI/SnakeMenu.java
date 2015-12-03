@@ -1,5 +1,7 @@
 package GUI;
 
+        import SDK.User;
+
         import javax.swing.ImageIcon;
         import javax.swing.JPanel;
         import javax.swing.JLabel;
@@ -9,6 +11,7 @@ package GUI;
         import java.awt.Color;
         import java.awt.Image;
         import java.awt.event.ActionListener;
+        import java.util.ArrayList;
 
 public class SnakeMenu extends JPanel {
     private JLabel lblWelcomeToThe;
@@ -70,8 +73,11 @@ public class SnakeMenu extends JPanel {
         cbs.setIcon( new ImageIcon(src));
         cbs.setBounds(0,0,450,550);
         add(cbs);
+    }
+        public void setUsers(ArrayList<User> users){
 
     }
+
 
     public void addACList(ActionListener ac){
         btnStartNewGame.addActionListener(ac);

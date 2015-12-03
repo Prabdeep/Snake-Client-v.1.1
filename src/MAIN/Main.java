@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Snakeapp x = new Snakeapp();
         x.run();
-        ServerConnection sc = new ServerConnection();
-        sc.get("users");
+        ServerConnection serverCon = new ServerConnection();
+        serverCon.get("users");
     }
 }

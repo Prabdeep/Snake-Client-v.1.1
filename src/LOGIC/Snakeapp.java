@@ -1,23 +1,25 @@
 package LOGIC;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
-import javax.swing.*;
 
-import com.google.gson.Gson;
+import SDK.User;
 
 import GUI.*;
-import SDK.Game;
 import SDK.ServerConnection;
-import SDK.Player;
 
 public class Snakeapp {
 
     private Screen screen;
+    private User currentPlayer;
+    private ServerConnection serverCon;
+
 
         public Snakeapp() {
             screen = new Screen();
+            currentPlayer = new User();
             screen.setVisible(true);
+            serverCon = new ServerConnection();
+
 
 }
     public void run() {
@@ -37,75 +39,31 @@ public class Snakeapp {
 
     }
 
-    private boolean isEmpty(String text) {
-
-        if (text.equals("") || text.length() < 1 || text == null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     private class LoginActionListener implements ActionListener {
 
-        public void Login(String playerid, String password) {
-
-            ServerConnection serverConnection = new ServerConnection();
-
-            Player player = new Player();
-            player.setPlayerid(playerid);
-            player.setPassword(password);
-
-            String json = new Gson().toJson(player);
-
-            serverConnection.post(json, "login/");
-
-        }
-
-        public boolean playerAuthentication () {
-
-            String playerid = screen.getLogin().getPlayerID().getText();
-            String password = screen.getLogin().getPasswordfield().getText();
-
-            ServerConnection serverConnection = new ServerConnection();
-            if (!playerid.equals("") && !password.equals("")) {
-
-                Player player = new Player();
-                player.setPlayerid(playerid);
-                player.setPassword(password);
-
-                String json = new Gson().toJson(player);
-
-                serverConnection.stringMessageParser(json, "login/");
-
-
-                return true;
-            }
-
-            return false;
-        }
 
         public void actionPerformed(ActionEvent a) {
+
             String actCom = a.getActionCommand();
             if (actCom.equals("Login")) {
 
-                String loginField = screen.getLogin().getPlayerID().getText();
-                String passwordField = screen.getLogin().getPasswordfield().getText();
-                screen.getLogin().getPlayerID().setText("");
-                screen.getLogin().getPasswordfield().setText("");
+                currentPlayer.setUsername(screen.getLogin().getPlayerID().getText());
+                currentPlayer.setPassword(screen.getLogin().getPasswordfield().getText());
 
-                if (isEmpty(loginField) || isEmpty(passwordField)) {
+                String message = User.userAuthentication(currentPlayer);
 
-                    screen.getLogin().setLoginFailure("Please type a Player ID and a Password");
+                if (message.equals("Login successful")) {
+                    screen.getSnakemenu().setUsers(User.getUsers());
+                    screen.show(Screen.SNAKEMENU);
 
-                }
-
-                else {screen.show(Screen.SNAKEMENU);
+                } else if (message.equals("Wrong username or password")) message.equals(("Error in JSON"));
+                {
 
                 }
             }
         }
     }
+
 
     private class SnakeMenuActionListener implements ActionListener {
 
@@ -135,6 +93,7 @@ public class Snakeapp {
 
             else {
                 screen.show(screen.LOGIN);
+                currentPlayer = new User();
             }
         }
     }

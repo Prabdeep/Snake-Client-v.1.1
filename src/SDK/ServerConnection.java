@@ -1,12 +1,16 @@
 package SDK;
 
+
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+
 public class ServerConnection {
 
-    public ServerConnection(){
+    static ServerConnection serverCon = new ServerConnection();
+
+    public ServerConnection() {
         this.hostAddress = "http://localhost";
         this.port = 8888;
     }
@@ -30,7 +34,7 @@ public class ServerConnection {
         return port;
     }
 
-    public void get(String path){
+    public String get(String path) {
 
         Client client = Client.create();
 
@@ -40,25 +44,26 @@ public class ServerConnection {
 
         String output = response.getEntity(String.class);
         System.out.println(output);
+        return output;
     }
 
-    public void post(String json, String path){
+    public String post(String json, String path) {
 
         Client client = Client.create();
 
         WebResource webResource = client.resource(getHostAddress() + ":" + getPort() + "/api/" + path);
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, json);
 
-        if (response.getStatus() != 200 && response.getStatus() != 201) {
+        /*if (response.getStatus() != 200 && response.getStatus() != 201) {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
-        }
+        }*/
 
         String output = response.getEntity(String.class);
         System.out.println(output);
 
-    }
-
-    public void stringMessageParser(String json, String s) {
+        return output;
     }
 }
+
+

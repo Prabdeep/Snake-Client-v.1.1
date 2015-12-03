@@ -1,5 +1,7 @@
 package GUI;
 
+import sun.security.util.Password;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -50,7 +52,7 @@ public class Login extends JPanel {
         btnLogin.setBounds(98, 405, 253, 44);
         add(btnLogin);
 
-        lblPleaseEnter = new JLabel("Please enter Player ID and Password:");
+        lblPleaseEnter = new JLabel("Please enter User ID and Password:");
         lblPleaseEnter.setFont(new Font("Tahoma", Font.BOLD, 18));
         lblPleaseEnter.setBounds(54, 110, 341, 25);
         add(lblPleaseEnter);
@@ -76,6 +78,12 @@ public class Login extends JPanel {
         add(cbs);
 
     }
+
+     public void clearFields(){
+         PlayerID.setText("");
+         passwordField.setText("");
+     }
+
     public void actionPerformedLogin(ActionListener login) {
         btnLogin.addActionListener(login);
     }
