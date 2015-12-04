@@ -21,6 +21,12 @@ public class CreateGame extends JPanel {
     private JButton btnBack;
     private JLabel lblNew;
     private JLabel lblNewGame;
+    private JLabel lblGameCon;
+    private JTextField textField_1;
+    private JButton btnA;
+    private JButton btnS;
+    private JButton btnD;
+    private JButton btnW;
 
 
     public CreateGame() {
@@ -39,18 +45,18 @@ public class CreateGame extends JPanel {
         add(lblO);
 
         textField = new JTextField();
-        textField.setBounds(177, 230, 186, 34);
+        textField.setBounds(194, 203, 166, 34);
         add(textField);
         textField.setColumns(10);
 
         lblGameName = new JLabel("Game Name:");
         lblGameName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblGameName.setBounds(86, 228, 86, 34);
+        lblGameName.setBounds(86, 201, 86, 34);
         add(lblGameName);
 
         btnCreateGame = new JButton("Create Game");
         btnCreateGame.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        btnCreateGame.setBounds(86, 301, 277, 34);
+        btnCreateGame.setBounds(86, 403, 277, 34);
         add(btnCreateGame);
 
         btnBack = new JButton("Back to main menu");
@@ -66,6 +72,32 @@ public class CreateGame extends JPanel {
         lblNewGame = new JLabel("");
         lblNewGame.setBounds(86, 378, 277, 50);
         add(lblNewGame);
+
+        lblGameCon = new JLabel("Game Controls:");
+        lblGameCon.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblGameCon.setBounds(86, 246, 96, 32);
+        add(lblGameCon);
+
+        textField_1 = new JTextField();
+        textField_1.setBounds(194, 248, 166, 34);
+        add(textField_1);
+        textField_1.setColumns(10);
+
+        btnA = new JButton("A = Left");
+        btnA.setBounds(86, 341, 79, 23);
+        add(btnA);
+
+        btnW = new JButton("W = Up");
+        btnW.setBounds(175, 313, 89, 23);
+        add(btnW);
+
+        btnS = new JButton("S = Down");
+        btnS.setBounds(175, 341, 89, 23);
+        add(btnS);
+
+        btnD = new JButton("D = Right");
+        btnD.setBounds(274, 341, 89, 23);
+        add(btnD);
 
         JLabel cbs = new JLabel(""); Image src = new ImageIcon(this.getClass().getResource("Background1.jpg")).getImage();
         cbs.setIcon( new ImageIcon(src));
