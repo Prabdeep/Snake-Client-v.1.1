@@ -1,14 +1,11 @@
 package GUI;
 
-import java.awt.BorderLayout;
+
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import GUI.Login;
 
-import java.awt.Toolkit;
 
 public class Screen extends JFrame {
     public static final String LOGIN = "Login";
@@ -20,7 +17,6 @@ public class Screen extends JFrame {
     public static final String LOADHIGHSCORES = "Loadhighscores";
 
     private JPanel contentPane;
-    private JPanel mainPanel;
 
     private Login login;
     private SnakeMenu snakemenu;
@@ -30,48 +26,43 @@ public class Screen extends JFrame {
     private LoadResult loadresult;
     private LoadHighscores loadhighscores;
 
-    private CardLayout cl;
+    private CardLayout c;
 
     public Screen() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 465, 585);
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5,5,5,5));
-        contentPane.setLayout(new BorderLayout(465, 585));
+        contentPane.setLayout(new CardLayout());
         setContentPane(contentPane);
 
-        cl = new CardLayout();
-        mainPanel = new JPanel();
-        mainPanel.setLayout(cl);
         login = new Login();
-        mainPanel.add(login, LOGIN);
+        contentPane.add(login, LOGIN);
 
         snakemenu = new SnakeMenu();
-        mainPanel.add(snakemenu, SNAKEMENU);
+        contentPane.add(snakemenu, SNAKEMENU);
 
         startgame = new StartGame();
-        mainPanel.add(startgame, STARTGAME);
+        contentPane.add(startgame, STARTGAME);
 
         creategame = new CreateGame();
-        mainPanel.add(creategame, CREATEGAME);
+        contentPane.add(creategame, CREATEGAME);
 
         deletegame = new DeleteGame();
-        mainPanel.add(deletegame, DELETEGAME);
+        contentPane.add(deletegame, DELETEGAME);
 
         loadresult = new LoadResult();
-        mainPanel.add(loadresult, LOADRESULT);
+        contentPane.add(loadresult, LOADRESULT);
 
         loadhighscores = new LoadHighscores();
-        mainPanel.add(loadhighscores, LOADHIGHSCORES);
+        contentPane.add(loadhighscores, LOADHIGHSCORES);
 
-        contentPane.add(mainPanel, BorderLayout.CENTER);
-        cl.show(mainPanel, LOGIN);
+        c = (CardLayout) getContentPane().getLayout();
 
     }
 
     public void show(String panel) {
-        cl.show(mainPanel, panel);
+        c.show(contentPane, panel);
     }
 
     public Login getLogin() {
