@@ -32,7 +32,6 @@ public class LoadHighscores extends JPanel {
         lblAllHighscores.setBounds(60, 48, 330, 50);
         add(lblAllHighscores);
 
-
         lblGamename = new JLabel("Game names");
         lblGamename.setForeground(new Color(0, 0, 153));
         lblGamename.setFont(new Font("Raleway", Font.PLAIN, 13));
@@ -66,6 +65,10 @@ public class LoadHighscores extends JPanel {
         cbs.setBounds(0,0,450,550);
         add(cbs);
 
+    }
+
+    public void actionPerformedLoadHighScores(ActionListener loadhighscores) {
+        //btn.addActionListener(loadhighscores);
     }
 
     public void actionPerformedBack(ActionListener back) {

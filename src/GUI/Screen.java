@@ -25,48 +25,79 @@ public class Screen extends JFrame {
     private LoadHighscores loadhighscores;
     private StatusWindow statusWindow;
 
+    private JPanel status;
+    private JLabel lblStatusMessages;
+    private JTextArea textArea;
+    private JPanel mainMenu;
+
     private CardLayout c;
 
     public Screen() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setBounds(100, 100, 930, 585);
-        setBounds(100, 100, 930, 1170);
+        setBounds(100, 100, 930, 585);
 
-        //Panel med Knapper
+        //Container på side
         contentPane = new JPanel();
-        contentPane.setLayout(new CardLayout());
         setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        //Knapper og menu
+        mainMenu = new JPanel();
+        mainMenu.setBounds(10, 10, 465, 490);
+        contentPane.add(mainMenu); // Tilføj til container
+        mainMenu.setLayout(new CardLayout());
 
         login = new Login();
-        contentPane.add(login, LOGIN);
+        mainMenu.add(login, LOGIN);
 
         snakemenu = new SnakeMenu();
-        contentPane.add(snakemenu, SNAKEMENU);
+        mainMenu.add(snakemenu, SNAKEMENU);
 
         startgame = new StartGame();
-        contentPane.add(startgame, STARTGAME);
+        mainMenu.add(startgame, STARTGAME);
 
         creategame = new CreateGame();
-        contentPane.add(creategame, CREATEGAME);
+        mainMenu.add(creategame, CREATEGAME);
 
         deletegame = new DeleteGame();
-        contentPane.add(deletegame, DELETEGAME);
+        mainMenu.add(deletegame, DELETEGAME);
 
         loadresult = new LoadResult();
-        contentPane.add(loadresult, LOADRESULT);
+        mainMenu.add(loadresult, LOADRESULT);
 
         loadhighscores = new LoadHighscores();
-        contentPane.add(loadhighscores, LOADHIGHSCORES);
+        mainMenu.add(loadhighscores, LOADHIGHSCORES);
 
         statusWindow = new StatusWindow();
-        contentPane.add(statusWindow, STATUSWINDOW);
+        mainMenu.add(statusWindow, STATUSWINDOW);
 
-        c = (CardLayout) getContentPane().getLayout();
+        //c = (CardLayout) getContentPane().getLayout();
+
+
+        //Status panel
+        status = new JPanel();
+        status.setBounds(485, 10, 389, 490);
+        contentPane.add(status);
+        status.setLayout(null);
+
+        lblStatusMessages = new JLabel("Status messages");
+        lblStatusMessages.setBounds(10, 11, 123, 14);
+        status.add(lblStatusMessages);
+
+        textArea = new JTextArea();
+        textArea.setBounds(10, 27, 379, 463);
+        status.add(textArea);
+        textArea.setEditable(false);
     }
 
     public void show(String panel) {
-        c.show(contentPane, panel);
+
+        //mainMenu = (CardLayout) getContentPane().getLayout();
+        System.out.println("Panel:" + panel);
+
+        CardLayout cardLayout = (CardLayout) mainMenu.getLayout();
+        cardLayout.show(mainMenu, panel);
     }
 
     public Login getLogin() {
@@ -97,4 +128,7 @@ public class Screen extends JFrame {
         return loadhighscores;
     }
 
+    public void addStatusWindowMessage(String msg){
+        textArea.setText(textArea.getText() + "\n" + msg);
+    }
 }

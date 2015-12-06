@@ -125,12 +125,12 @@ public class Snakeapp {
             //Send Json request om at joine
             String jsonGameData = serverCon.put("games/join",new Gson().toJson(existingGame));
             System.out.println(parseMessage(jsonGameData));
-
-
+            screen.addStatusWindowMessage("Msg: " + parseMessage(jsonGameData));
 
             //Start spillet
             String jsondata = serverCon.put("games/start",new Gson().toJson(existingGame));
             System.out.println(jsondata);
+            screen.addStatusWindowMessage("Msg: " + jsondata);
 
 
         }
@@ -141,7 +141,6 @@ public class Snakeapp {
         public void actionPerformed(ActionEvent a) {
             Game newGame = new Game();
             Gamer host = new Gamer();
-            Gamer opponent = new Gamer();
 
             //Sæt spiller handlinger
             host.setId(currentPlayer.getId());
@@ -150,7 +149,6 @@ public class Snakeapp {
             //Her sætter jeg værdier for spillet
             newGame.setMapSize(300);
             newGame.setHost(host);
-           // newGame.setOpponent(opponent);
             newGame.setName(screen.getCreategame().getTextField_gameName().getText().trim());
 
             //Debug
@@ -159,6 +157,8 @@ public class Snakeapp {
 
             String jsonGameData = serverCon.post(new Gson().toJson(newGame),"games");
             System.out.println(parseMessage(jsonGameData));
+
+            screen.addStatusWindowMessage("Msg: " + parseMessage(jsonGameData));
         }
     }
 
