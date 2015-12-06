@@ -15,19 +15,29 @@ import javax.swing.JButton;
 public class CreateGame extends JPanel {
     private JLabel lblCreateAGame;
     private JLabel lblO;
-    private JTextField textField;
+    private JTextField textField_gameName;
     private JLabel lblGameName;
     private JButton btnCreateGame;
     private JButton btnBack;
     private JLabel lblNew;
     private JLabel lblNewGame;
     private JLabel lblGameCon;
-    private JTextField textField_1;
+
+
+
+    private JTextField textField_gameControl;
     private JButton btnA;
     private JButton btnS;
     private JButton btnD;
     private JButton btnW;
 
+    public JTextField getTextField_gameControl() {
+        return textField_gameControl;
+    }
+
+    public JTextField getTextField_gameName() {
+        return textField_gameName;
+    }
 
     public CreateGame() {
         setLayout(null);
@@ -44,10 +54,10 @@ public class CreateGame extends JPanel {
         lblO.setBounds(65, 109, 319, 50);
         add(lblO);
 
-        textField = new JTextField();
-        textField.setBounds(194, 203, 166, 34);
-        add(textField);
-        textField.setColumns(10);
+        textField_gameName = new JTextField();
+        textField_gameName.setBounds(194, 203, 166, 34);
+        add(textField_gameName);
+        textField_gameName.setColumns(10);
 
         lblGameName = new JLabel("Game Name:");
         lblGameName.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -78,10 +88,10 @@ public class CreateGame extends JPanel {
         lblGameCon.setBounds(86, 246, 96, 32);
         add(lblGameCon);
 
-        textField_1 = new JTextField();
-        textField_1.setBounds(194, 248, 166, 34);
-        add(textField_1);
-        textField_1.setColumns(10);
+        textField_gameControl = new JTextField();
+        textField_gameControl.setBounds(194, 248, 166, 34);
+        add(textField_gameControl);
+        textField_gameControl.setColumns(10);
 
         btnA = new JButton("A = Left");
         btnA.setBounds(86, 341, 79, 23);

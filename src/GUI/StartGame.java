@@ -15,16 +15,26 @@ public class StartGame extends JPanel {
 
     private JLabel lblStartGame;
     private JLabel lblNameGame;
-    private JTextField textField;
+    private JTextField textField_gameId;
     private JButton btnStartGame;
     private JButton btnBack;
     private JLabel lblGameControls;
-    private JTextField textField_1;
-    private JLabel lblGameName;
+    private JTextField textfield_gameControl;
+    private JLabel lblGameId;
+
+
+    public JTextField getTextField_gameId() {
+        return textField_gameId;
+    }
+
+    public JTextField getTextfield_gameControl() {
+        return textfield_gameControl;
+    }
 
     public StartGame() {
         setLayout(null);
         setBounds(100, 100, 450, 550);
+
 
         lblStartGame = new JLabel("Start Game");
         lblStartGame.setForeground(new Color(0, 0, 102));
@@ -37,10 +47,11 @@ public class StartGame extends JPanel {
         lblNameGame.setBounds(65, 95, 319, 50);
         add(lblNameGame);
 
-        textField = new JTextField();
-        textField.setBounds(205, 156, 158, 34);
-        add(textField);
-        textField.setColumns(10);
+        textField_gameId = new JTextField();
+        textField_gameId.setBounds(205, 156, 158, 34);
+        add(textField_gameId);
+        textField_gameId.setColumns(10);
+
 
         btnStartGame = new JButton("Start Game");
         btnStartGame.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -53,15 +64,15 @@ public class StartGame extends JPanel {
         btnBack.setBounds(86, 448, 277, 41);
         add(btnBack);
 
-        textField_1 = new JTextField();
-        textField_1.setBounds(205, 213, 158, 34);
-        add(textField_1);
-        textField_1.setColumns(10);
+        textfield_gameControl = new JTextField();
+        textfield_gameControl.setBounds(205, 213, 158, 34);
+        add(textfield_gameControl);
+        textfield_gameControl.setColumns(10);
 
-        lblGameName = new JLabel("Game Name:");
-        lblGameName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblGameName.setBounds(98, 164, 85, 14);
-        add(lblGameName);
+        lblGameId = new JLabel("Game Id:");
+        lblGameId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblGameId.setBounds(98, 164, 85, 14);
+        add(lblGameId);
 
         lblGameControls = new JLabel("Game Controls:");
         lblGameControls.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -77,6 +88,7 @@ public class StartGame extends JPanel {
 
     public void actionPerformedStartGame(ActionListener startgame) {
         btnStartGame.addActionListener(startgame);
+
     }
 
     public void actionPerformedBack(ActionListener back) {

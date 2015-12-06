@@ -38,7 +38,7 @@ public class SnakeMenu extends JPanel {
         lblPleaseChoose.setBounds(112, 102, 225, 50);
         add(lblPleaseChoose);
 
-        btnStartNewGame = new JButton("Start New Game");
+        btnStartNewGame = new JButton("Join Game");
         btnStartNewGame.setFont(new Font("Tahoma", Font.PLAIN, 17));
         btnStartNewGame.setBounds(72, 163, 306, 41);
         add(btnStartNewGame);

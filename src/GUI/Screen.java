@@ -1,11 +1,8 @@
 package GUI;
 
 
-import java.awt.CardLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-
+import java.awt.*;
+import javax.swing.*;
 
 public class Screen extends JFrame {
     public static final String LOGIN = "Login";
@@ -15,8 +12,9 @@ public class Screen extends JFrame {
     public static final String DELETEGAME = "Deletegame";
     public static final String LOADRESULT = "Loadresult";
     public static final String LOADHIGHSCORES = "Loadhighscores";
+    public static final String STATUSWINDOW = "StatusWindow";
 
-    private JPanel contentPane;
+    private JPanel contentPane, statusPane;
 
     private Login login;
     private SnakeMenu snakemenu;
@@ -25,13 +23,17 @@ public class Screen extends JFrame {
     private DeleteGame deletegame;
     private LoadResult loadresult;
     private LoadHighscores loadhighscores;
+    private StatusWindow statusWindow;
 
     private CardLayout c;
 
     public Screen() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 465, 585);
+        //setBounds(100, 100, 930, 585);
+        setBounds(100, 100, 930, 1170);
+
+        //Panel med Knapper
         contentPane = new JPanel();
         contentPane.setLayout(new CardLayout());
         setContentPane(contentPane);
@@ -57,8 +59,10 @@ public class Screen extends JFrame {
         loadhighscores = new LoadHighscores();
         contentPane.add(loadhighscores, LOADHIGHSCORES);
 
-        c = (CardLayout) getContentPane().getLayout();
+        statusWindow = new StatusWindow();
+        contentPane.add(statusWindow, STATUSWINDOW);
 
+        c = (CardLayout) getContentPane().getLayout();
     }
 
     public void show(String panel) {

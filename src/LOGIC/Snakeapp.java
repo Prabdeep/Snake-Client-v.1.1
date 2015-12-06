@@ -2,10 +2,16 @@ package LOGIC;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import SDK.Game;
+import SDK.Gamer;
 import SDK.User;
 
 import GUI.*;
 import SDK.ServerConnection;
+import com.google.gson.Gson;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Snakeapp {
 
@@ -71,7 +77,7 @@ public class Snakeapp {
 
             String actCom = a.getActionCommand();
 
-            if (actCom.equals("Start New Game")) {
+            if (actCom.equals("Join Game")) {
                 screen.show(screen.STARTGAME);
             }
 
@@ -101,14 +107,58 @@ public class Snakeapp {
     private class StartGameActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent a) {
-            screen.show(Screen.SNAKEMENU);
+            Game existingGame = new Game();
+            Gamer opponent = new Gamer();
+
+            //Set modspiller id samt handlinger
+            opponent.setId(currentPlayer.getId());
+            opponent.setControls(screen.getStartgame().getTextfield_gameControl().getText().trim());
+
+            //*** Join det eksisterende spil og sæt modspiller ***
+            existingGame.setGameId(Integer.parseInt(screen.getStartgame().getTextField_gameId().getText().trim()));
+            existingGame.setOpponent(opponent);
+
+            //Debug
+            //System.out.println("Game ID: " + screen.getStartgame().getTextField_gameId().getText().trim());
+            //System.out.println("Controls: " + screen.getStartgame().getTextfield_gameControl().getText().trim());
+
+            //Send Json request om at joine
+            String jsonGameData = serverCon.put("games/join",new Gson().toJson(existingGame));
+            System.out.println(parseMessage(jsonGameData));
+
+
+
+            //Start spillet
+            String jsondata = serverCon.put("games/start",new Gson().toJson(existingGame));
+            System.out.println(jsondata);
+
+
         }
     }
 
     private class CreateGameActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent a) {
-            screen.show(Screen.SNAKEMENU);
+            Game newGame = new Game();
+            Gamer host = new Gamer();
+            Gamer opponent = new Gamer();
+
+            //Sæt spiller handlinger
+            host.setId(currentPlayer.getId());
+            host.setControls(screen.getCreategame().getTextField_gameControl().getText().trim());
+
+            //Her sætter jeg værdier for spillet
+            newGame.setMapSize(300);
+            newGame.setHost(host);
+           // newGame.setOpponent(opponent);
+            newGame.setName(screen.getCreategame().getTextField_gameName().getText().trim());
+
+            //Debug
+            //System.out.println("Controls" + screen.getCreategame().getTextField_gameControl().getText().trim());
+            //System.out.println("Name" + screen.getCreategame().getTextField_gameName().getText().trim());
+
+            String jsonGameData = serverCon.post(new Gson().toJson(newGame),"games");
+            System.out.println(parseMessage(jsonGameData));
         }
     }
 
@@ -132,6 +182,7 @@ public class Snakeapp {
 
         public void actionPerformed(ActionEvent a) {
             screen.show(Screen.SNAKEMENU);
+
         }
     }
 
@@ -154,5 +205,20 @@ public class Snakeapp {
         public void actionPerformed(ActionEvent a) {
             screen.show(Screen.SNAKEMENU);
         }
+    }
+
+    //Parse Json besked
+    public String parseMessage(String messageToParse) {
+        JSONParser parseJsonMessage = new JSONParser();
+        try {
+            Object object = parseJsonMessage.parse(messageToParse);
+            JSONObject jsonobject = (JSONObject) object;
+
+            messageToParse = (String) jsonobject.get("message");
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return messageToParse;
     }
 }
