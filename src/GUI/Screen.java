@@ -35,16 +35,17 @@ public class Screen extends JFrame {
     public Screen() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 930, 585);
+        setBounds(100, 100, 930, 610);
 
         //Container på side
         contentPane = new JPanel();
         setContentPane(contentPane);
+        getContentPane().setBackground(new Color(153, 153, 153));
         contentPane.setLayout(null);
 
         //Knapper og menu
         mainMenu = new JPanel();
-        mainMenu.setBounds(10, 10, 465, 490);
+        mainMenu.setBounds(10, 10, 450, 550);
         contentPane.add(mainMenu); // Tilføj til container
         mainMenu.setLayout(new CardLayout());
 
@@ -77,18 +78,25 @@ public class Screen extends JFrame {
 
         //Status panel
         status = new JPanel();
-        status.setBounds(485, 10, 389, 490);
+        status.setBounds(485, 10, 415, 550);
+        status.setBackground(new Color(169, 169, 169));
         contentPane.add(status);
         status.setLayout(null);
 
-        lblStatusMessages = new JLabel("Status messages");
-        lblStatusMessages.setBounds(10, 11, 123, 14);
+        lblStatusMessages = new JLabel("Status Messages:");
+        lblStatusMessages.setForeground(new Color(0, 0, 102));
+        lblStatusMessages.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblStatusMessages.setVerticalAlignment(SwingConstants.TOP);
+        lblStatusMessages.setBounds(10, 11, 161, 22);
         status.add(lblStatusMessages);
 
         textArea = new JTextArea();
-        textArea.setBounds(10, 27, 379, 463);
+        textArea.setBounds(10, 44, 395, 495);
+        textArea.setLineWrap(true);
+        textArea.setText("This is a status sidebar that prints messages for the snake game: ");
         status.add(textArea);
         textArea.setEditable(false);
+
     }
 
     public void show(String panel) {

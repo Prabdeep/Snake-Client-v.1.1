@@ -62,7 +62,9 @@ public class Snakeapp {
                     screen.getSnakemenu().setUsers(User.getUsers());
                     screen.show(Screen.SNAKEMENU);
 
-                } else if (message.equals("Wrong username or password")) message.equals(("Error in JSON"));
+                }
+
+               else if (message.equals("Wrong username or password")) message.equals(("Error in JSON"));
                 {
 
                 }
@@ -165,7 +167,14 @@ public class Snakeapp {
     private class DeleteGameActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent a) {
-            screen.show(Screen.SNAKEMENU);
+            Game deleteGame = new Game();
+
+            deleteGame.setGameId(Integer.parseInt(screen.getDeletegame().getTextField().getText().trim()));
+
+
+                String jsonGameData = serverCon.delete("games/");
+
+                screen.addStatusWindowMessage("Msg: " + parseMessage(jsonGameData));
         }
     }
 

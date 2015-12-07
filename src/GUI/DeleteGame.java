@@ -22,7 +22,12 @@ public class DeleteGame extends JPanel {
     private JLabel lblDeleted;
     private JLabel lblGameDeleted;
 
+    public JTextField getTextField() {
+        return textField;
+    }
+
     public DeleteGame() {
+
         setLayout(null);
         setBounds(100, 100, 450, 550);
 
