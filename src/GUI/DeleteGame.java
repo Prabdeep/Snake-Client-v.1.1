@@ -43,6 +43,10 @@ public class DeleteGame extends JPanel {
         return textField;
     }
 
+    /**
+     * Oprettelse af panelet "DeleteGame" der bliver tilføjet alle de forskellige komponenter
+     */
+
     public DeleteGame() {
 
         /**
@@ -135,7 +139,7 @@ public class DeleteGame extends JPanel {
     }
 
     /**
-     * Tilføjer actionlisteners for the button "DeleteGame" og "Back" 
+     * Tilføjer actionlisteners for the button "DeleteGame" og "Back"
      * @param deletegame
      */
 

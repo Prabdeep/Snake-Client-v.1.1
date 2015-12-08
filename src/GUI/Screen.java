@@ -4,7 +4,21 @@ package GUI;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * GUI klassen screen består af et Jframe som indenholder alle de andre Jpanels.
+ * Denne klasse sørger at det er muligt at se alle de foreskellige Jpanels, samt tilføjer rammen rundt om panelerner.
+ */
+
+/**
+ * Vi benytter her et "extended" JFrame hvilket danner rammen omkring Jpanels
+ */
+
 public class Screen extends JFrame {
+
+    /**
+     * Der bliver sat et ID for alle Jpanels
+     */
+
     public static final String LOGIN = "Login";
     public static final String SNAKEMENU = "Snakemenu";
     public static final String STARTGAME = "Startgame";
@@ -12,7 +26,10 @@ public class Screen extends JFrame {
     public static final String DELETEGAME = "Deletegame";
     public static final String LOADRESULT = "Loadresult";
     public static final String LOADHIGHSCORES = "Loadhighscores";
-    public static final String STATUSWINDOW = "StatusWindow";
+
+    /**
+     * Deklarering af lokale variabler fra de forskellige variabler
+     */
 
     private JPanel contentPane, statusPane;
 
@@ -23,31 +40,45 @@ public class Screen extends JFrame {
     private DeleteGame deletegame;
     private LoadResult loadresult;
     private LoadHighscores loadhighscores;
-    private StatusWindow statusWindow;
 
     private JPanel status;
     private JLabel lblStatusMessages;
     private JTextArea textArea;
     private JPanel mainMenu;
 
-    private CardLayout c;
+    /**
+     * Oprettelse af framet "Screen" der tilføjer rammen for Jpanels
+     * */
 
     public Screen() {
+
+        /**
+         * Sætter størrelsen for Jframet
+         */
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 930, 610);
 
-        //Container på side
+        /**
+         * Tilføjer en contianer
+         */
         contentPane = new JPanel();
         setContentPane(contentPane);
         getContentPane().setBackground(new Color(153, 153, 153));
         contentPane.setLayout(null);
 
-        //Knapper og menu
+        /**
+         * Tilføjer attributter for contianeren
+         */
+
         mainMenu = new JPanel();
         mainMenu.setBounds(10, 10, 450, 550);
         contentPane.add(mainMenu); // Tilføj til container
-        mainMenu.setLayout(new CardLayout());
+        mainMenu.setLayout(new CardLayout()); // Tilføjer et card layout hvor panelerne ligger oven på hinanden
+
+        /**
+         * Tilføjer alle paneler til contianeren
+         */
 
         login = new Login();
         mainMenu.add(login, LOGIN);
@@ -70,18 +101,20 @@ public class Screen extends JFrame {
         loadhighscores = new LoadHighscores();
         mainMenu.add(loadhighscores, LOADHIGHSCORES);
 
-        statusWindow = new StatusWindow();
-        mainMenu.add(statusWindow, STATUSWINDOW);
 
-        //c = (CardLayout) getContentPane().getLayout();
+        /**
+         * Opretter et status panel
+         */
 
-
-        //Status panel
         status = new JPanel();
         status.setBounds(485, 10, 415, 550);
         status.setBackground(new Color(169, 169, 169));
         contentPane.add(status);
         status.setLayout(null);
+
+        /**
+         * Tilføjer et Jlabel
+         */
 
         lblStatusMessages = new JLabel("Status Messages:");
         lblStatusMessages.setForeground(new Color(0, 0, 102));
@@ -89,6 +122,10 @@ public class Screen extends JFrame {
         lblStatusMessages.setVerticalAlignment(SwingConstants.TOP);
         lblStatusMessages.setBounds(10, 11, 161, 22);
         status.add(lblStatusMessages);
+
+        /**
+         * Tilføjer et textarea
+         */
 
         textArea = new JTextArea();
         textArea.setBounds(10, 44, 395, 495);
@@ -99,14 +136,21 @@ public class Screen extends JFrame {
 
     }
 
-    public void show(String panel) {
+    /**
+     * "Public void show" metoden muliggøre at sende enkelte paneler (cards) til framet.
+     * @param panel
+     */
 
-        //mainMenu = (CardLayout) getContentPane().getLayout();
-        System.out.println("Panel:" + panel);
+    public void show(String panel) {
 
         CardLayout cardLayout = (CardLayout) mainMenu.getLayout();
         cardLayout.show(mainMenu, panel);
     }
+
+    /**
+     * Det er oprettet getters for alle panelerne så de kan hentes andre steder fra!
+     * @return
+     */
 
     public Login getLogin() {
         return login;
@@ -136,6 +180,10 @@ public class Screen extends JFrame {
         return loadhighscores;
     }
 
+    /**
+     * Der er lavet en set metode der kan udkskrive beskeder i status panelet 
+     * @param msg
+     */
     public void addStatusWindowMessage(String msg){
         textArea.setText(textArea.getText() + "\n" + msg);
     }
