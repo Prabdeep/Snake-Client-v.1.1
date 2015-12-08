@@ -1,5 +1,6 @@
 package SDK;
 
+import GUI.Screen;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.json.simple.JSONObject;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class User {
 
+    private static Screen screen;
     //creating variables
     private int id;
     private String firstName;
@@ -21,6 +23,7 @@ public class User {
     private String status;
     private String email;
     private int type;
+  //  private Screen screen;
 
     private static ServerConnection serverCon;
 
@@ -28,19 +31,21 @@ public class User {
     public User() {
 
         serverCon = new ServerConnection();
+        screen = new Screen();
 
     }
 
     public static String userAuthentication(User user) {
-        String message = "";
-        String authentication = serverCon.post(new Gson().toJson(user), "login");
+        String jsondata = "";
+       String authentication = serverCon.post(new Gson().toJson(user), "login");
         JSONParser parser = new JSONParser();
+        //screen.addStatusWindowMessage("Msg: " + jsondata);
 
         try {
             Object object = parser.parse(authentication);
             JSONObject jsonobject = (JSONObject) object;
 
-            message = (String) jsonobject.get("message");
+            jsondata = (String) jsonobject.get("message");
 
             if (jsonobject.get("userid") != null) ;
             user.setId((int) (long) jsonobject.get("userid"));
@@ -48,7 +53,7 @@ public class User {
         } catch (ParseException e) {
 
         }
-        return message;
+        return jsondata;
     }
     // User Arraylist
 

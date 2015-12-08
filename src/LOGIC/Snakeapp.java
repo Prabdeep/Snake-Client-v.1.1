@@ -62,6 +62,14 @@ public class Snakeapp {
                     screen.getSnakemenu().setUsers(User.getUsers());
                     screen.show(Screen.SNAKEMENU);
 
+                   // String jsondata = serverCon.put("login/",new Gson().toJson(message));
+                    //System.out.println(jsondata);
+
+
+                    String jsondata = serverCon.post(new Gson().toJson(User.getUsers()), "login/");
+
+                    screen.addStatusWindowMessage("Msg: " + jsondata);
+
                 }
 
                else if (message.equals("Wrong username or password")) message.equals(("Error in JSON"));
@@ -167,15 +175,23 @@ public class Snakeapp {
     private class DeleteGameActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent a) {
-            Game deleteGame = new Game();
 
-            deleteGame.setGameId(Integer.parseInt(screen.getDeletegame().getTextField().getText().trim()));
+            public boolean deleteGame(int gameId); {
+
+                try {
+                    serverCon.delete("games/" + gameId);
+                } catch (Exception ex) {}}}
+            /*Game deleteGame = new Game();
+
+            deleteGame.getGameId();
+
+            deleteGame.setGameId(Integer.parseInt(screen.getStartgame().getTextField_gameId().getText().trim()));
+
+            String jsonGameData = serverCon.delete("games/");
 
 
-                String jsonGameData = serverCon.delete("games/");
+                screen.addStatusWindowMessage("Msg: " + parseMessage(jsonGameData));*/
 
-                screen.addStatusWindowMessage("Msg: " + parseMessage(jsonGameData));
-        }
     }
 
     //Back ActionListeners
