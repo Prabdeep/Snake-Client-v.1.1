@@ -5,9 +5,13 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 /**
- * Created by Prabdeep on 04-12-2015.
+ * Klassen "Gamer" indeholder alle de variabler der hører til en spiller
  */
 public class Gamer extends User {
+
+    /**
+     * Deklarering af lokale variabler!
+     */
 
     private int score;
     private int totalScore;
@@ -15,19 +19,10 @@ public class Gamer extends User {
     private String controls;
     private boolean winner;
 
-    private static ServerConnection serverCon;
-
-    {
-
-        serverCon = new ServerConnection();
-
-    }
-
-    public String createGame(Game game) {
-
-        String jsonImport = serverCon.post(new Gson().toJson(game),"games");
-        return null;
-    }
+    /**
+     * Der er blevet lavet getter og setters for variabler der tilhører en spiller
+     * @return
+     */
 
     public boolean isWinner() {
         return winner;

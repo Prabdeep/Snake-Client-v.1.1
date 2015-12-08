@@ -366,6 +366,7 @@ public class Snakeapp {
         /**
          * Laver en try catch metode
          */
+
         try {
             Object object = parseJsonMessage.parse(messageToParse);
             JSONObject jsonobject = (JSONObject) object;

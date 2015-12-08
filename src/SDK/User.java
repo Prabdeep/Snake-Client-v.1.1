@@ -1,6 +1,5 @@
 package SDK;
 
-import GUI.Screen;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.json.simple.JSONObject;
@@ -10,10 +9,16 @@ import org.json.simple.parser.ParseException;
 import java.sql.Date;
 import java.util.ArrayList;
 
+/**
+ * Klassen "User" indeholder alle de variabler der hører til en user samt en user authentication metode
+ */
+
 public class User {
 
-    private static Screen screen;
-    //creating variables
+    /**
+     * Deklarering af lokale variabler!
+     */
+
     private int id;
     private String firstName;
     private String lastName;
@@ -23,7 +28,6 @@ public class User {
     private String status;
     private String email;
     private int type;
-  //  private Screen screen;
 
     private static ServerConnection serverCon;
 
@@ -31,13 +35,17 @@ public class User {
     public User() {
 
         serverCon = new ServerConnection();
-        screen = new Screen();
-
     }
+
+    /**
+     * Dette er en parser metode som  bruges når der skal hentes data fra JSon
+     * @param user
+     * @return
+     */
 
     public static String userAuthentication(User user) {
         String jsondata = "";
-       String authentication = serverCon.post(new Gson().toJson(user), "login");
+        String authentication = serverCon.post(new Gson().toJson(user), "login");
         JSONParser parser = new JSONParser();
         //screen.addStatusWindowMessage("Msg: " + jsondata);
 
@@ -48,14 +56,18 @@ public class User {
             jsondata = (String) jsonobject.get("message");
 
             if (jsonobject.get("userid") != null) ;
-            user.setId((int) (long) jsonobject.get("userid"));
+            user.setId((int) (long) jsonobject.get("userid")); // Metoden long tvinger Json til int fra string
 
         } catch (ParseException e) {
 
         }
         return jsondata;
     }
-    // User Arraylist
+
+    /**
+     * En arraylist for alle bruger i systemet
+     * @return
+     */
 
     public static ArrayList<User> getUsers() {
         String jsonImport = serverCon.get("users");
@@ -65,7 +77,11 @@ public class User {
         return users;
     }
 
-    // ID
+    /**
+     * Getters og setters for alle variabler der tilhører User
+     * @return
+     */
+
     public int getId() {
         return id;
     }

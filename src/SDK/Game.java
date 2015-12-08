@@ -3,11 +3,15 @@ package SDK;
 import java.sql.Date;
 
 /**
- * Created by Peter on 12-10-2015.
+ * Klassen "Game" indeholder alle de variabler der hører til et spil
  */
 
 public class Game {
-    //Creating the variables needed for the game
+
+    /**
+     * Deklarering af lokale variabler!
+     */
+
     private int gameId;
     private Gamer winner;
     private String name;
@@ -18,6 +22,11 @@ public class Game {
     private int mapSize;
 
     public Game(){}
+
+    /**
+     * Der bliver lavet getters og settes af alle variabler
+     * @return
+     */
 
     public Date getCreated() {
         return created;

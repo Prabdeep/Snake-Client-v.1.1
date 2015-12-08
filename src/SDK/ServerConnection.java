@@ -5,18 +5,38 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+/**
+ * Denne klasse indenholder selve forbindelsen til severen.
+ * Samt attributter  der får serveren til at udfører handlinger.
+ */
 
 public class ServerConnection {
 
-    static ServerConnection serverCon = new ServerConnection();
+    /**
+     * Opretter en konstruktør
+     */
 
     public ServerConnection() {
+
+        /**
+         * Initialisering af variabler fra konstruktør
+         */
+
         this.hostAddress = "http://localhost";
         this.port = 8888;
     }
 
+    /**
+     * Deklarering af lokale variabler!
+     */
+
     private String hostAddress;
     private int port;
+
+    /**
+     * Der laves settes
+     * @param hostAddress
+     */
 
     public void setHostAddress(String hostAddress) {
         this.hostAddress = hostAddress;
@@ -34,6 +54,12 @@ public class ServerConnection {
         return port;
     }
 
+    /**
+     * Metoden bruges til at hente(get) noget fra serveren
+     * @param path er stien hvor vi vil hente noget fra serveren fra
+     * @return
+     */
+
     public String get(String path) {
 
         Client client = Client.create();
@@ -45,6 +71,12 @@ public class ServerConnection {
         System.out.println(output);
         return output;
     }
+
+    /**
+     * Metoden bruges til at sende(post) noget til serveren
+     * @param path er stien hvor vi vil poste noget til serveren
+     * @return
+     */
 
     public String post(String json, String path) {
 
@@ -59,6 +91,11 @@ public class ServerConnection {
         return output;
     }
 
+    /**
+     * Metoden bruges til at slette noget fra serveren
+     * @param path er stien hvor vi vil slette noget fra serveren af
+     * @return
+     */
     public String delete( String path) {
 
         Client client = Client.create();
@@ -68,6 +105,12 @@ public class ServerConnection {
 
         return response.getEntity(String.class);
     }
+
+    /**
+     * Metoden bruges til at tilføje noget der opdatere til serveren
+     * @param path er stien hvor vi vil opdatere noget i serveren
+     * @return
+     */
 
     public String put(String path, String json) {
 
