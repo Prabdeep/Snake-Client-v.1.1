@@ -181,7 +181,7 @@ public class Screen extends JFrame {
     }
 
     /**
-     * Der er lavet en set metode der kan udkskrive beskeder i status panelet 
+     * Der er lavet en set metode der kan udkskrive beskeder i status panelet
      * @param msg
      */
     public void addStatusWindowMessage(String msg){
