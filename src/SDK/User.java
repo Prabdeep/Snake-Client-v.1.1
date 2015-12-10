@@ -36,34 +36,6 @@ public class User {
 
         serverCon = new ServerConnection();
     }
-
-    /**
-     * Dette er en parser metode som  bruges når der skal hentes data fra JSon
-     * @param user
-     * @return
-     */
-
-    public static String userAuthentication(User user) {
-        String jsondata = "";
-        String authentication = serverCon.post(new Gson().toJson(user), "login");
-        JSONParser parser = new JSONParser();
-        //screen.addStatusWindowMessage("Msg: " + jsondata);
-
-        try {
-            Object object = parser.parse(authentication);
-            JSONObject jsonobject = (JSONObject) object;
-
-            jsondata = (String) jsonobject.get("message");
-
-            if (jsonobject.get("userid") != null) ;
-            user.setId((int) (long) jsonobject.get("userid")); // Metoden long tvinger Json til int fra string
-
-        } catch (ParseException e) {
-
-        }
-        return jsondata;
-    }
-
     /**
      * En arraylist for alle bruger i systemet
      * @return

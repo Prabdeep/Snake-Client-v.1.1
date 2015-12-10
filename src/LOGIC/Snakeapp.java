@@ -1,14 +1,14 @@
 package LOGIC;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
-import SDK.Game;
-import SDK.Gamer;
-import SDK.User;
+import SDK.*;
 
 import GUI.*;
-import SDK.ServerConnection;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -63,7 +63,7 @@ public class Snakeapp {
         screen.getCreategame().actionPerformedBack(new CreateGameActionListenerBack());
         screen.getDeletegame().actionPerformedBack(new DeleteGameActionListenerBack());
         screen.getLoadresult().actionPerformedBack(new LoadResultActionListenerBack());
-        screen.getLoadhighscores().actionPerformedBack(new LoadHighscoresActionListenerBack());
+        //screen.getLoadhighscores().actionPerformedBack(new LoadHighscoresActionListenerBack());
 
     }
 
@@ -98,7 +98,9 @@ public class Snakeapp {
                  * Tjekker i "SDK.User" om brugeren eksistere.
                  */
 
-                String message = User.userAuthentication(currentPlayer);
+                String jsondata = serverCon.post(new Gson().toJson(currentPlayer), "login");
+
+                String message = parseMessage(jsondata);
 
                 /**
                  * Hvis spilleren bliver verificeret vil man komme videre til "SNAKEMENU"
@@ -115,15 +117,11 @@ public class Snakeapp {
                      * Printer response fra server
                      */
 
-                    String jsondata = serverCon.post(new Gson().toJson(User.getUsers()), "login/");
-
-                    screen.addStatusWindowMessage("Msg: " + jsondata);
+                    screen.addStatusWindowMessage(message);
 
                 }
-
-               else if (message.equals("Wrong username or password")) message.equals(("Error in JSON"));
-                {
-
+                else {
+                    screen.addStatusWindowMessage(message);
                 }
             }
         }
@@ -161,7 +159,9 @@ public class Snakeapp {
             }
 
             else if (actCom.equals("Load Highscores")){
-                screen.show(screen.LOADHIGHSCORES);
+                //screen.show(screen.LOADHIGHSCORES);
+                System.out.println("Hello!");
+                LoadHighScores();
             }
 
             else {
@@ -313,6 +313,44 @@ public class Snakeapp {
     }
 
     /**
+     * Deklarering af metode!
+     */
+
+    private void LoadHighScores(){
+
+        /**
+         * Sæt data til scores, som vi ønsker at hente highscore
+         */
+
+        String jsondata = serverCon.get("scores");
+
+        /**
+         * Jeg bruger til en Typetoken Arraylist af typen "Score", for at sikre at strengen der kommer tilbage fra serveren, kan behandles som "Score" objekter
+         */
+
+        Type listeType = new TypeToken<ArrayList<Score>>(){}.getType();
+        ArrayList<Score> highscores = new Gson().fromJson(jsondata, listeType);
+
+        //Debug
+        //System.out.println("Size: " + highscores.size());
+
+        //Tilføj header
+        /**
+         * Tilføj header og printer list over highscores i status baren 
+         */
+
+        screen.addStatusWindowMessage("\nPlayer Id: \tPlayer name: \tScore: \tGame id:");
+        for(int i=0;i<highscores.size();i++){
+            Score score = highscores.get(i);
+            screen.addStatusWindowMessage(score.getUser().getId() +"\t" + score.getUser().getFirstName() +"\t" + score.getScore()  +"\t" + score.getGame().getGameId());
+
+            //Debug
+            //System.out.println("Player Id: " + score.getUser().getId() +"\tPlayer name: " + score.getUser().getFirstName() + "\t\tScore: "+ score.getScore() +"\tGame id: "+ score.getGame().getGameId());
+        }
+
+    }
+
+    /**
      * All back buttons ActionListeners
      */
 
@@ -348,6 +386,8 @@ public class Snakeapp {
             screen.show(Screen.SNAKEMENU);
         }
     }
+
+
 
     /**
      * Der er lavet en parse metode som skal bruges hente beskeder fra Json i serveren

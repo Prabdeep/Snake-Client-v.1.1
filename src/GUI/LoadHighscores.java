@@ -120,6 +120,7 @@ public class LoadHighscores extends JPanel {
      */
 
     public void actionPerformedLoadHighScores(ActionListener loadhighscores) {
+
         //btn.addActionListener(loadhighscores);
     }
 

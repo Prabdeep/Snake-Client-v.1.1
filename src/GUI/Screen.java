@@ -148,7 +148,7 @@ public class Screen extends JFrame {
     }
 
     /**
-     * Det er oprettet getters for alle panelerne så de kan hentes andre steder fra!
+     * Det er oprettet getters for alle panelerne så de kan hentes andre steder fra
      * @return
      */
 
@@ -177,13 +177,10 @@ public class Screen extends JFrame {
     }
 
     public LoadHighscores getLoadhighscores() {
+
         return loadhighscores;
     }
 
-    /**
-     * Der er lavet en set metode der kan udkskrive beskeder i status panelet
-     * @param msg
-     */
     public void addStatusWindowMessage(String msg){
         textArea.setText(textArea.getText() + "\n" + msg);
     }
