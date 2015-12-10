@@ -72,7 +72,7 @@ public class Screen extends JFrame {
         mainMenu = new JPanel();
         mainMenu.setBounds(10, 10, 450, 550);
         contentPane.add(mainMenu); // Tilføj til container
-        mainMenu.setLayout(new CardLayout()); // Tilføjer et card layout hvor panelerne ligger oven på hinanden
+        mainMenu.setLayout(new CardLayout()); // Tilføjer e
 
         /**
          * Tilføjer alle paneler til contianeren
@@ -128,10 +128,9 @@ public class Screen extends JFrame {
         textArea.setText("This is a status sidebar that prints messages for the snake game: ");
         status.add(textArea);
         textArea.setEditable(false);
-
-        }
-      public void clearFields() {
-        textArea.setText("");
+    }
+        public void clearFields(){
+            textArea.setText("");
 
     }
 

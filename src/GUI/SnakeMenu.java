@@ -71,7 +71,7 @@ public class SnakeMenu extends JPanel {
 
         btnStartNewGame = new JButton("Join Game");
         btnStartNewGame.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        btnStartNewGame.setBounds(72, 163, 306, 41);
+        btnStartNewGame.setBounds(72, 179, 306, 50);
         this.add(btnStartNewGame);
 
         /**
@@ -80,7 +80,7 @@ public class SnakeMenu extends JPanel {
 
         btnCreateGame = new JButton("Create Game");
         btnCreateGame.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        btnCreateGame.setBounds(72, 215, 306, 41);
+        btnCreateGame.setBounds(72, 240, 306, 50);
         this.add(btnCreateGame);
 
         /**
@@ -89,7 +89,7 @@ public class SnakeMenu extends JPanel {
 
         btnDeleteGame = new JButton("Delete Game");
         btnDeleteGame.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        btnDeleteGame.setBounds(72, 267, 306, 41);
+        btnDeleteGame.setBounds(72, 301, 306, 50);
         this.add(btnDeleteGame);
 
         /**
@@ -98,17 +98,9 @@ public class SnakeMenu extends JPanel {
 
         btnLoadHighscores = new JButton("Load Highscores");
         btnLoadHighscores.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        btnLoadHighscores.setBounds(72, 371, 306, 41);
+        btnLoadHighscores.setBounds(72, 362, 306, 50);
         this.add(btnLoadHighscores);
 
-        /**
-         * Tilføjer Jbutton
-         */
-
-        btnloadresult = new JButton("Load Result From Last Game");
-        btnloadresult.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        btnloadresult.setBounds(72, 319, 305, 41);
-        this.add(btnloadresult);
 
         /**
          * Tilføjer Jbutton
@@ -146,7 +138,6 @@ public class SnakeMenu extends JPanel {
         btnStartNewGame.addActionListener(ac);
         btnCreateGame.addActionListener(ac);
         btnDeleteGame.addActionListener(ac);
-        btnloadresult.addActionListener(ac);
         btnLoadHighscores.addActionListener(ac);
         btnLogOut.addActionListener(ac);
     }

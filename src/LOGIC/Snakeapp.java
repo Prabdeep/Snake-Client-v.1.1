@@ -108,8 +108,6 @@ public class Snakeapp {
                     screen.getSnakemenu().setUsers(User.getUsers());
                     screen.show(Screen.SNAKEMENU);
                     screen.getLogin().clearFields();
-                   // String jsondata = serverCon.put("login/",new Gson().toJson(message));
-                    //System.out.println(jsondata);
 
                     /**
                      * Printer response fra server
@@ -158,8 +156,8 @@ public class Snakeapp {
 
             else {
                 screen.show(screen.LOGIN);
-                screen.clearFields();
                 currentPlayer = new User();
+                screen.clearFields();
             }
         }
     }
@@ -227,7 +225,6 @@ public class Snakeapp {
             System.out.println(jsondata);
             screen.addStatusWindowMessage("Msg: " + jsondata);
             screen.getStartgame().clearFields();
-
         }
     }
 
@@ -332,7 +329,7 @@ public class Snakeapp {
 
         //Tilføj header
         /**
-         * Tilføj header og printer list over highscores i status baren
+         * Tilføj header og printer list over higsh
          */
 
         screen.addStatusWindowMessage("\nPlayer Id: \tPlayer name: \tScore: \tGame id:");
@@ -368,6 +365,13 @@ public class Snakeapp {
             screen.show(Screen.SNAKEMENU);
         }
     }
+
+    private class LoadHighscoresActionListenerBack implements ActionListener {
+
+        public void actionPerformed(ActionEvent a) {screen.show(Screen.SNAKEMENU);
+        }
+    }
+
 
 
     /**
