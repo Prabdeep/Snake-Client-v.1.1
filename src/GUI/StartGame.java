@@ -145,6 +145,11 @@ public class StartGame extends JPanel {
 
     }
 
+    public void clearFields() {
+        textField_gameId.setText("");
+        textfield_gameControl.setText("");
+    }
+
     /**
      * Actionlisteners for de to knapper
      * @param startgame

@@ -24,7 +24,6 @@ public class Screen extends JFrame {
     public static final String STARTGAME = "Startgame";
     public static final String CREATEGAME = "Creategame";
     public static final String DELETEGAME = "Deletegame";
-    public static final String LOADRESULT = "Loadresult";
     public static final String LOADHIGHSCORES = "Loadhighscores";
 
     /**
@@ -38,7 +37,6 @@ public class Screen extends JFrame {
     private StartGame startgame;
     private CreateGame creategame;
     private DeleteGame deletegame;
-    private LoadResult loadresult;
     private LoadHighscores loadhighscores;
 
     private JPanel status;
@@ -95,9 +93,6 @@ public class Screen extends JFrame {
         deletegame = new DeleteGame();
         mainMenu.add(deletegame, DELETEGAME);
 
-        loadresult = new LoadResult();
-        mainMenu.add(loadresult, LOADRESULT);
-
         loadhighscores = new LoadHighscores();
         mainMenu.add(loadhighscores, LOADHIGHSCORES);
 
@@ -133,6 +128,10 @@ public class Screen extends JFrame {
         textArea.setText("This is a status sidebar that prints messages for the snake game: ");
         status.add(textArea);
         textArea.setEditable(false);
+
+        }
+      public void clearFields() {
+        textArea.setText("");
 
     }
 
@@ -172,14 +171,7 @@ public class Screen extends JFrame {
         return deletegame;
     }
 
-    public LoadResult getLoadresult() {
-        return loadresult;
-    }
-
-    public LoadHighscores getLoadhighscores() {
-
-        return loadhighscores;
-    }
+    public LoadHighscores getLoadhighscores() {return loadhighscores;}
 
     public void addStatusWindowMessage(String msg){
         textArea.setText(textArea.getText() + "\n" + msg);

@@ -138,6 +138,9 @@ public class DeleteGame extends JPanel {
         add(cbs);
     }
 
+    public void clearFields() {
+        textField.setText("");
+    }
     /**
      * Tilføjer actionlisteners for the button "DeleteGame" og "Back"
      * @param deletegame

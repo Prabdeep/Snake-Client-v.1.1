@@ -197,6 +197,10 @@ public class CreateGame extends JPanel {
 
     }
 
+    public void clearFields(){
+        textField_gameName.setText("");
+        textField_gameControl.setText("");
+    }
     public void actionPerformedCreateGame(ActionListener creategame) {
         btnCreateGame.addActionListener(creategame);
     }
