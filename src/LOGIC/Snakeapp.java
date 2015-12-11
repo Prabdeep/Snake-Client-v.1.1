@@ -317,6 +317,7 @@ public class Snakeapp {
              */
 
                 screen.addStatusWindowMessage("Spillet er nu slettet: " + parseMessage(jsonGameData));
+                screen.getDeletegame().clearFields();
         }
     }
 
