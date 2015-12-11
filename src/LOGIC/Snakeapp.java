@@ -93,7 +93,7 @@ public class Snakeapp {
                 currentPlayer.setPassword(screen.getLogin().getPasswordfield().getText());
 
                 /**
-                 * Tjekker i "SDK.User" om brugeren eksistere.
+                 * Sender post request til severens API.
                  */
 
                 String jsondata = serverCon.post(new Gson().toJson(currentPlayer), "login");
@@ -291,17 +291,32 @@ public class Snakeapp {
 
         public void actionPerformed(ActionEvent a) {
 
+            /**
+             * Opretter et nyt spil skal slettes
+             */
 
-            /*Game deleteGame = new Game();
+            Game gameId = new Game();
+            Game deleteGame = new Game();
+
+            /**
+             * Getter og setter gameid
+             */
 
             deleteGame.getGameId();
 
-            deleteGame.setGameId(Integer.parseInt(screen.getStartgame().getTextField_gameId().getText().trim()));
+            deleteGame.setGameId(Integer.parseInt(screen.getDeletegame().getTextField().getText().trim()));
 
-            String jsonGameData = serverCon.delete("games/");
+            /**
+             * Sender Json request om at oprette spillet
+             */
 
+            String jsonGameData = serverCon.delete("games/"+gameId);
 
-                screen.addStatusWindowMessage("Msg: " + parseMessage(jsonGameData));*/
+            /**
+             * Udskriver response fra server til status panel
+             */
+
+                screen.addStatusWindowMessage("Spillet er nu slettet: " + parseMessage(jsonGameData));
         }
     }
 

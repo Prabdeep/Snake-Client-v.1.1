@@ -172,6 +172,8 @@ public class Screen extends JFrame {
 
     public LoadHighscores getLoadhighscores() {return loadhighscores;}
 
+
+
     public void addStatusWindowMessage(String msg){
         textArea.setText(textArea.getText() + "\n" + msg);
     }

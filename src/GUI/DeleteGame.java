@@ -79,7 +79,7 @@ public class DeleteGame extends JPanel {
          * Tilføjer Jlabel
          */
 
-        lblGameName = new JLabel("Game Name:");
+        lblGameName = new JLabel("Game ID:");
         lblGameName.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblGameName.setBounds(86, 228, 86, 34);
         add(lblGameName);
